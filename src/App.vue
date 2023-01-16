@@ -17,6 +17,7 @@ export default {
             store,
             apiUrl: 'https://api.themoviedb.org/3/search/',
             inputValue: '',
+            languageFlag: '',
         }
     },
 
@@ -47,6 +48,10 @@ export default {
             console.log(this.store.streamProductsList);
             console.log(this.store.moviesList);
             console.log(this.store.tvSeriesList);
+        },
+
+        getImgPath(imgPath) {
+            return new URL('./assets/img/' + imgPath + '.png', import.meta.url).href
         }
     },
 }
@@ -66,15 +71,12 @@ export default {
                         <li v-else>{{ streamProduct.name }}</li>
                         <li v-if="streamProduct.original_title">{{ streamProduct.original_title }}</li>
                         <li v-else>{{ streamProduct.original_name }}</li>
-                        <li>{{ streamProduct.original_language }}</li>
+                        <li><img :src="getImgPath(streamProduct.original_language)" alt=""></li>
                         <li>{{ streamProduct.vote_average }}</li>
                     </ul>
                 </li>
             </ul>
         </article>
-    </div>
-    <div>
-
     </div>
 </template>
 
