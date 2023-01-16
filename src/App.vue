@@ -53,10 +53,15 @@ export default {
 
         getImgPath(imgPath) {
             return new URL('./assets/img/' + imgPath + '.png', import.meta.url).href
+        },
+
+        convertRange(oldValue, oldMin, oldMax, newMin, newMax) {
+            let newValue = (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin
+            return Math.ceil(newValue);
         }
     },
 
-    beforeMounted() {
+    beforeUnmount() {
         this.isFound = false;
     },
 }
@@ -77,7 +82,11 @@ export default {
                         <li v-if="streamProduct.original_title">{{ streamProduct.original_title }}</li>
                         <li v-else>{{ streamProduct.original_name }}</li>
                         <li><img :src="getImgPath(streamProduct.original_language)" alt=""></li>
-                        <li>{{ streamProduct.vote_average }}</li>
+                        <li>
+                            <font-awesome-icon v-for="starIcon, index in 5" icon="fa-solid fa-star" class="my_icon"
+                                :class="(convertRange(streamProduct.vote_average,1,10,1,5) >= index) ? 'my_active' : ''"
+                                :key="index" />
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -87,4 +96,12 @@ export default {
 
 <style lang="scss">
 @use '../node_modules/bootstrap/scss/bootstrap.scss';
+
+.my_icon {
+    color: grey;
+}
+
+.my_icon.my_active {
+    color: yellow;
+}
 </style>
