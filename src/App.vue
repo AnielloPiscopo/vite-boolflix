@@ -17,6 +17,7 @@ export default {
             store,
             apiUrl: 'https://api.themoviedb.org/3/search/',
             inputValue: '',
+            isFound: false,
         }
     },
 
@@ -40,6 +41,7 @@ export default {
         },
 
         viewStreamProductsList(queryValue) {
+            this.isFound = true;
             this.getStreamProductsInfo(queryValue, 'tv');
             this.getStreamProductsInfo(queryValue, 'movie');
 
@@ -53,6 +55,10 @@ export default {
             return new URL('./assets/img/' + imgPath + '.png', import.meta.url).href
         }
     },
+
+    beforeMounted() {
+        this.isFound = false;
+    },
 }
 </script>
 
@@ -62,7 +68,7 @@ export default {
         <a href="#" class="btn btn-primary" @click="viewStreamProductsList(inputValue)">Clicca qui!</a>
     </form>
     <div>
-        <article v-for="streamProduct, index in store.streamProductsList" :key="index">
+        <article v-if="isFound" v-for="streamProduct, index in store.streamProductsList" :key="index">
             <ul class="list-unstyled">
                 <li>
                     <ul class="list-unstyled">
