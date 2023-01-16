@@ -31,8 +31,8 @@ export default {
             })
                 .then(response => {
                     console.log(response.data.results);
-                    if (typeOfStream == 'movie') this.store.moviesList = response.data.results;
-                    else if (typeOfStream == 'tv') this.store.tvSeriesList = response.data.results;
+                    if (typeOfStream === 'movie') this.store.moviesList = response.data.results;
+                    else if (typeOfStream === 'tv') this.store.tvSeriesList = response.data.results;
                 })
                 .catch(err => {
                     console.arr(err);
@@ -43,7 +43,7 @@ export default {
             this.getStreamProductsInfo(queryValue, 'tv');
             this.getStreamProductsInfo(queryValue, 'movie');
 
-            this.store.streamProductsList = Object.assign(this.store.tvSeriesList, this.store.moviesList);
+            this.store.streamProductsList = [...this.store.moviesList, ...this.store.tvSeriesList];
             console.log(this.store.streamProductsList);
             console.log(this.store.moviesList);
             console.log(this.store.tvSeriesList);
@@ -62,8 +62,10 @@ export default {
             <ul class="list-unstyled">
                 <li>
                     <ul class="list-unstyled">
-                        <li>{{ streamProduct.title }}</li>
-                        <li>{{ streamProduct.original_title }}</li>
+                        <li v-if="streamProduct.title">{{ streamProduct.title }}</li>
+                        <li v-else>{{ streamProduct.name }}</li>
+                        <li v-if="streamProduct.original_title">{{ streamProduct.original_title }}</li>
+                        <li v-else>{{ streamProduct.original_name }}</li>
                         <li>{{ streamProduct.original_language }}</li>
                         <li>{{ streamProduct.vote_average }}</li>
                     </ul>
