@@ -17,7 +17,6 @@ export default {
             store,
             apiUrl: 'https://api.themoviedb.org/3/search/',
             inputValue: '',
-            languageFlag: '',
         }
     },
 
