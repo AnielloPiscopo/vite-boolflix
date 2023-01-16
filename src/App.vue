@@ -15,7 +15,9 @@ export default {
     data() {
         return {
             store,
-            apiUrl: 'https://api.themoviedb.org/3/search/',
+            apiStreamProductSearch: 'https://api.themoviedb.org/3/search/',
+            apiStreamProductImgPath: 'https://image.tmdb.org/t/p/',
+            streamProductImgWidth: 'w342',
             inputValue: '',
             isFound: false,
         }
@@ -23,7 +25,7 @@ export default {
 
     methods: {
         getStreamProductsInfo(queryValue, typeOfStream) {
-            axios.get(this.apiUrl + typeOfStream, {
+            axios.get(this.apiStreamProductSearch + typeOfStream, {
                 params: {
                     api_key: '21d2afbe969aeaeb562a09a276f709a7',
                     language: 'it-IT',
@@ -41,14 +43,16 @@ export default {
         },
 
         viewStreamProductsList(queryValue) {
-            this.isFound = true;
-            this.getStreamProductsInfo(queryValue, 'tv');
-            this.getStreamProductsInfo(queryValue, 'movie');
+            if (queryValue) {
+                this.isFound = true;
+                this.getStreamProductsInfo(queryValue, 'tv');
+                this.getStreamProductsInfo(queryValue, 'movie');
 
-            this.store.streamProductsList = [...this.store.moviesList, ...this.store.tvSeriesList];
-            console.log(this.store.streamProductsList);
-            console.log(this.store.moviesList);
-            console.log(this.store.tvSeriesList);
+                this.store.streamProductsList = [...this.store.moviesList, ...this.store.tvSeriesList];
+                console.log(this.store.streamProductsList);
+                console.log(this.store.moviesList);
+                console.log(this.store.tvSeriesList);
+            }
         },
 
         getImgPath(imgPath) {
@@ -58,6 +62,10 @@ export default {
         convertRange(oldValue, oldMin, oldMax, newMin, newMax) {
             let newValue = (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin
             return Math.ceil(newValue);
+        },
+
+        getStreamProductImgPath(queryValue) {
+            return this.apiStreamProductImgPath + this.streamProductImgWidth + queryValue;
         }
     },
 
@@ -77,6 +85,7 @@ export default {
             <ul class="list-unstyled">
                 <li>
                     <ul class="list-unstyled">
+                        <li> <img :src="getStreamProductImgPath(streamProduct.poster_path)" alt=""></li>
                         <li v-if="streamProduct.title">{{ streamProduct.title }}</li>
                         <li v-else>{{ streamProduct.name }}</li>
                         <li v-if="streamProduct.original_title">{{ streamProduct.original_title }}</li>
