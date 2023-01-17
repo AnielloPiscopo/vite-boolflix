@@ -13,6 +13,7 @@ export default {
         streamProductOriginalName: String,
         streamProductOriginalLanguage: String,
         streamProductVoteAverage: Number,
+        streamProductOverview: String,
     },
 
     data() {
@@ -44,15 +45,33 @@ export default {
             <img v-else :src="store.notFoundImgPath" alt="immagine non trovata" title="immagine non trovata"
                 class="w-100 h-100">
         </div>
-        <ul v-else class="list-unstyled">
-            <li>{{ (streamProductTitle) ? streamProductTitle : streamProductName }}</li>
-            <li>{{ (streamProductOriginalTitle) ? streamProductOriginalTitle :
-            streamProductOriginalName }}</li>
-            <li><img :src="store.getImgPath(streamProductOriginalLanguage)" alt="Bandiera" class="w-100"></li>
+        <ul v-else class="list-unstyled pt-5 px-3">
             <li>
+                <span class="my_stream-product-details fw-bold pe-2">Titolo:</span>
+                <span class="my_stream-product-text">{{ (streamProductTitle) ? streamProductTitle : streamProductName
+                }}</span>
+            </li>
+            <li>
+                <span class="my_stream-product-details fw-bold pe-2">Titolo originale:</span>
+                <span class="my_stream-product-text">{{ (streamProductOriginalTitle) ? streamProductOriginalTitle :
+                streamProductOriginalName }}</span>
+            </li>
+            <li>
+                <span class="my_stream-product-details fw-bold pe-2">Lingua:</span>
+                <span class="my_stream-product-img d-inline-block">
+                    <img :src="store.getImgPath(streamProductOriginalLanguage)" alt="Bandiera" class="w-100">
+                </span>
+            </li>
+            <li>
+                <span class="my_stream-product-details fw-bold pe-2">Voto:</span>
                 <font-awesome-icon v-for="starIcon, index in 5" icon="fa-solid fa-star" class="my_icon"
-                    :class="(store.convertRange(streamProductVoteAverage,1,10,1,5) >= index) ? 'my_active' : ''"
+                    :class="(store.convertRange(streamProductVoteAverage, 1, 10, 1, 5) >= index) ? 'my_active' : ''"
                     :key="index" />
+            </li>
+            <li>
+                <span class="my_stream-product-details fw-bold pe-2">Overview:</span>
+                <span class="my_stream-product-text">{{ (streamProductOverview) ? streamProductOverview : 'Nessuna\
+                descrizione' }}</span>
             </li>
         </ul>
     </article>
@@ -68,7 +87,15 @@ article {
     border: 2px solid $secondary--color;
     cursor: pointer;
     background-color: $primary--color;
-    color: $secondary--color;
+    color: $darker-secondary--color;
+
+    .my_stream-product-img {
+        width: 30px;
+    }
+
+    .my_stream-product-details {
+        color: $secondary--color;
+    }
 
     .my_icon {
         color: $stars--color;

@@ -43,7 +43,8 @@ export default {
                 :streamProductName="streamProduct.original_name"
                 :streamProductOriginalName="streamProduct.original_name"
                 :streamProductOriginalLanguage="streamProduct.original_language"
-                :streamProductVoteAverage="streamProduct.vote_average" />
+                :streamProductVoteAverage="streamProduct.vote_average"
+                :streamProductOverview="streamProduct.overview" />
         </div>
     </main>
 </template>
