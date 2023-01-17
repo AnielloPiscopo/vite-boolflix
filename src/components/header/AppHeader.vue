@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import { store } from '../../store';
+
 export default {
     name: 'AppHeader',
 
@@ -44,14 +45,14 @@ export default {
             return new URL('./assets/img/' + imgPath + '.png', import.meta.url).href
         },
 
+        getStreamProductImgPath(queryValue) {
+            return this.apiStreamProductImgPath + this.streamProductImgWidth + queryValue;
+        },
+
         convertRange(oldValue, oldMin, oldMax, newMin, newMax) {
             let newValue = (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin
             return Math.ceil(newValue);
         },
-
-        getStreamProductImgPath(queryValue) {
-            return this.apiStreamProductImgPath + this.streamProductImgWidth + queryValue;
-        }
     },
 }
 </script>

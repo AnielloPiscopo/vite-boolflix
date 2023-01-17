@@ -1,6 +1,14 @@
 <script>
+import { store } from '../../store';
+
 export default {
     name: 'AppMain',
+
+    data() {
+        return {
+            store,
+        }
+    },
 
     computed: {
         streamProducts() {
@@ -25,7 +33,7 @@ export default {
                         <li><img :src="getImgPath(streamProduct.original_language)" alt=""></li>
                         <li>
                             <font-awesome-icon v-for="starIcon, index in 5" icon="fa-solid fa-star" class="my_icon"
-                                :class="(convertRange(streamProduct.vote_average,1,10,1,5) >= index) ? 'my_active' : ''"
+                                :class="(store.convertRange(streamProduct.vote_average,1,10,1,5) >= index) ? 'my_active' : ''"
                                 :key="index" />
                         </li>
                     </ul>
