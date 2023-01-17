@@ -1,19 +1,32 @@
 <script>
 import { store } from '../../store';
+import MainStreamProduct from './MainStreamProduct.vue';
 
 export default {
     name: 'AppMain',
 
+    components: {
+        MainStreamProduct,
+    },
+
     data() {
         return {
             store,
+            apiStreamProductImgPath: 'https://image.tmdb.org/t/p/',
+            streamProductImgWidth: 'w342',
         }
+    },
+
+    methods: {
+        getStreamProductImgPath(queryValue) {
+            return this.apiStreamProductImgPath + this.streamProductImgWidth + queryValue;
+        },
     },
 
     computed: {
         streamProducts() {
             return [...this.store.moviesList, ...this.store.tvSeriesList];
-        }
+        },
     }
 }
 </script>
@@ -22,24 +35,12 @@ export default {
 
 <template>
     <main>
-        <article v-for="streamProduct, index in streamProducts" :key="index">
-            <ul class="list-unstyled">
-                <li>
-                    <ul class="list-unstyled">
-                        <li> <img :src="getStreamProductImgPath(streamProduct.poster_path)" alt=""></li>
-                        <li>{{ (streamProduct.title) ? streamProduct.title : streamProduct.name }}</li>
-                        <li>{{ (streamProduct.original_title) ? streamProduct.original_title :
-                        streamProduct.original_name }}</li>
-                        <li><img :src="getImgPath(streamProduct.original_language)" alt=""></li>
-                        <li>
-                            <font-awesome-icon v-for="starIcon, index in 5" icon="fa-solid fa-star" class="my_icon"
-                                :class="(store.convertRange(streamProduct.vote_average,1,10,1,5) >= index) ? 'my_active' : ''"
-                                :key="index" />
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </article>
+        <MainStreamProduct v-for="streamProduct, index in streamProducts" :key="index"
+            :streamProductImgPath="getStreamProductImgPath(streamProduct.poster_path)"
+            :streamProductTitle="streamProduct.title" :streamProductOriginalTitle="streamProduct.original_title"
+            :streamProductName="streamProduct.original_name" :streamProductOriginalName="streamProduct.original_name"
+            :streamProductOriginalLanguage="streamProduct.original_language"
+            :streamProductVoteAverage="streamProduct.vote_average" />
     </main>
 </template>
 

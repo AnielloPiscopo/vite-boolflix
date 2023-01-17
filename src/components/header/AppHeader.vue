@@ -9,8 +9,6 @@ export default {
         return {
             store,
             apiStreamProductSearch: 'https://api.themoviedb.org/3/search/',
-            apiStreamProductImgPath: 'https://image.tmdb.org/t/p/',
-            streamProductImgWidth: 'w342',
             inputValue: '',
         }
     },
@@ -39,19 +37,6 @@ export default {
             this.getStreamProductsInfo(queryValue, 'movie');
             console.log(this.store.moviesList);
             console.log(this.store.tvSeriesList);
-        },
-
-        getImgPath(imgPath) {
-            return new URL('./assets/img/' + imgPath + '.png', import.meta.url).href
-        },
-
-        getStreamProductImgPath(queryValue) {
-            return this.apiStreamProductImgPath + this.streamProductImgWidth + queryValue;
-        },
-
-        convertRange(oldValue, oldMin, oldMax, newMin, newMax) {
-            let newValue = (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin
-            return Math.ceil(newValue);
         },
     },
 }
