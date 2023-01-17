@@ -18,6 +18,7 @@ export default {
             axios.get(this.apiStreamProductSearch + typeOfStream, {
                 params: {
                     api_key: '21d2afbe969aeaeb562a09a276f709a7',
+                    page: 1,
                     language: 'it-IT',
                     query: queryValue,
                 }
@@ -51,8 +52,8 @@ export default {
                 <h1 class="text-uppercase fw-bold">Boolfix</h1>
             </a>
             <form @submit.prevent>
-                <input type="text" class='my_input' v-model.trim="inputValue"
-                    @keyup.prevent.enter="viewStreamProductsList(inputValue)">
+                <input type="text" placeholder="Inserisci il nome del prodotto che vuoi vedere" class='my_input'
+                    v-model.trim="inputValue" @keyup.prevent.enter="viewStreamProductsList(inputValue)">
             </form>
         </div>
     </header>

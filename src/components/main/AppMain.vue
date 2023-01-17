@@ -35,7 +35,7 @@ export default {
 
 <template>
     <main>
-        <div class="my_container d-flex flex-wrap justify-content-center pt-5">
+        <div class="my_container d-flex flex-wrap justify-content-center py-5">
             <MainStreamProduct v-for="streamProduct, index in streamProducts" :key="index"
                 :streamProductImgPath="getStreamProductImgPath(streamProduct.poster_path)"
                 :streamProductPosterPath="streamProduct.poster_path" :streamProductTitle="streamProduct.title"
