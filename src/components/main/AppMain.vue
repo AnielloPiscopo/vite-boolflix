@@ -37,8 +37,9 @@ export default {
     <main>
         <MainStreamProduct v-for="streamProduct, index in streamProducts" :key="index"
             :streamProductImgPath="getStreamProductImgPath(streamProduct.poster_path)"
-            :streamProductTitle="streamProduct.title" :streamProductOriginalTitle="streamProduct.original_title"
-            :streamProductName="streamProduct.original_name" :streamProductOriginalName="streamProduct.original_name"
+            :streamProductPosterPath="streamProduct.poster_path" :streamProductTitle="streamProduct.title"
+            :streamProductOriginalTitle="streamProduct.original_title" :streamProductName="streamProduct.original_name"
+            :streamProductOriginalName="streamProduct.original_name"
             :streamProductOriginalLanguage="streamProduct.original_language"
             :streamProductVoteAverage="streamProduct.vote_average" />
     </main>
