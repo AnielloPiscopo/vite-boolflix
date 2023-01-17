@@ -28,7 +28,7 @@ export default {
     <article>
         <img v-if='streamProductPosterPath != null' :src="streamProductImgPath" :alt="streamProductOriginalTitle"
             :title="streamProductTitle">
-        <img v-else :src="store.imgNotFoundPath" alt="immagine non trovata">
+        <img v-else :src="store.notFoundImgPath" alt="immagine non trovata">
         <ul class="list-unstyled">
             <li>{{ (streamProductTitle) ? streamProductTitle : streamProductName }}</li>
             <li>{{ (streamProductOriginalTitle) ? streamProductOriginalTitle :
