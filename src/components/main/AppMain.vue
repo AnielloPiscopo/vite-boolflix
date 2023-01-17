@@ -35,7 +35,7 @@ export default {
 
 <template>
     <main>
-        <section class="stream-products-container d-flex flex-wrap">
+        <section class="my_container d-flex flex-wrap">
             <MainStreamProduct v-for="streamProduct, index in streamProducts" :key="index"
                 :streamProductImgPath="getStreamProductImgPath(streamProduct.poster_path)"
                 :streamProductPosterPath="streamProduct.poster_path" :streamProductTitle="streamProduct.title"

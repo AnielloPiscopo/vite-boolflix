@@ -45,17 +45,29 @@ export default {
 
 
 <template>
-    <header class="d-flex justify-content-between align-items-center p-4">
-        <h1 class="text-uppercase">Boolfix</h1>
-        <form @submit.prevent>
-            <input type="text" class='my_input' v-model.trim="inputValue"
-                @keyup.prevent.enter="viewStreamProductsList(inputValue)">
-        </form>
+    <header>
+        <div class="my_container d-flex justify-content-between align-items-center p-4">
+            <a href="#" class="my_logo text-unstyled text-decoration-none">
+                <h1 class="text-uppercase fw-bold">Boolfix</h1>
+            </a>
+            <form @submit.prevent>
+                <input type="text" class='my_input' v-model.trim="inputValue"
+                    @keyup.prevent.enter="viewStreamProductsList(inputValue)">
+            </form>
+        </div>
     </header>
 </template>
 
 
 
 <style lang="scss" scoped>
+@use '../../styles/partials/variables' as *;
 
+header {
+    background-color: $primary--color;
+
+    .my_logo {
+        color: $logo--color;
+    }
+}
 </style>
