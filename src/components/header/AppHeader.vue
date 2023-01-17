@@ -9,7 +9,12 @@ export default {
         return {
             store,
             apiStreamProductSearch: 'https://api.themoviedb.org/3/search/',
+            apiStreamProductPage: 1,
             inputValue: '',
+            navActiveElementIndex: 0,
+            navElementsList: ['Home', 'Serie TV', 'Film'],
+            isTvSeriesFilterActive: true,
+            isMoviesFilterActive: true,
         }
     },
 
@@ -18,7 +23,7 @@ export default {
             axios.get(this.apiStreamProductSearch + typeOfStream, {
                 params: {
                     api_key: '21d2afbe969aeaeb562a09a276f709a7',
-                    page: 1,
+                    page: this.apiStreamProductPage,
                     language: 'it-IT',
                     query: queryValue,
                 }
@@ -34,10 +39,16 @@ export default {
         },
 
         viewStreamProductsList(queryValue) {
-            this.getStreamProductsInfo(queryValue, 'tv');
-            this.getStreamProductsInfo(queryValue, 'movie');
-            console.log(this.store.moviesList);
-            console.log(this.store.tvSeriesList);
+            if (this.isMoviesFilterActive && this.isTvSeriesFilterActive) {
+                this.getStreamProductsInfo(queryValue, 'tv');
+                this.getStreamProductsInfo(queryValue, 'movie');
+            }
+            else if (this.isMoviesFilterActive) {
+                this.getStreamProductsInfo(queryValue, 'movie');
+            }
+            else if (this.isTvSeriesFilterActive) {
+                this.getStreamProductsInfo(queryValue, 'tv');
+            }
         },
     },
 }
@@ -48,9 +59,17 @@ export default {
 <template>
     <header>
         <div class="my_container d-flex justify-content-between align-items-center p-4">
-            <a href="#" class="my_logo text-unstyled text-decoration-none">
-                <h1 class="text-uppercase fw-bold">Boolfix</h1>
-            </a>
+            <nav class="d-flex align-items-center">
+                <a href="#" class="my_logo text-decoration-none pe-4">
+                    <h1 class="text-uppercase fw-bold">Boolfix</h1>
+                </a>
+                <ul class="list-unstyled d-flex m-0">
+                    <li v-for="navElement, index in navElementsList" :key="index"><a href="#"
+                            class="text-decoration-none pe-3"
+                            :class="(navActiveElementIndex === index) ? 'my_active fw-bold' : ''">{{ navElement }}</a>
+                    </li>
+                </ul>
+            </nav>
             <form @submit.prevent>
                 <input type="text" placeholder="Inserisci il nome del prodotto che vuoi vedere" class='my_input'
                     v-model.trim="inputValue" @keyup.prevent.enter="viewStreamProductsList(inputValue)">
@@ -67,8 +86,18 @@ export default {
 header {
     background-color: $primary--color;
 
-    .my_logo {
-        color: $logo--color;
+    nav {
+        .my_logo {
+            color: $logo--color;
+        }
+
+        ul a {
+            color: $darker-secondary--color;
+
+            &.my_active {
+                color: $secondary--color;
+            }
+        }
     }
 }
 </style>

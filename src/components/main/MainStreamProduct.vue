@@ -83,6 +83,7 @@ export default {
 
 article {
     width: 342px;
+    overflow-y: scroll;
     height: 481px;
     border: 2px solid $secondary--color;
     cursor: pointer;
