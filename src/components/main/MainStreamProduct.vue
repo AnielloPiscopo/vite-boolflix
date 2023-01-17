@@ -44,10 +44,6 @@ export default {
 </template>
 
 
-<style lang="scss">
-.my_void-img-container {
-    width: 342px;
-    height: 513px;
-    background-color: grey;
-}
+<style lang="scss" scoped>
+
 </style>
