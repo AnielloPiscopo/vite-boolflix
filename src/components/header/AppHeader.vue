@@ -13,8 +13,6 @@ export default {
             inputValue: '',
             navActiveElementIndex: 0,
             navElementsList: ['Home', 'Serie TV', 'Film'],
-            isTvSeriesFilterActive: true,
-            isMoviesFilterActive: true,
         }
     },
 
@@ -39,17 +37,23 @@ export default {
         },
 
         viewStreamProductsList(queryValue) {
-            if (this.isMoviesFilterActive && this.isTvSeriesFilterActive) {
-                this.getStreamProductsInfo(queryValue, 'tv');
-                this.getStreamProductsInfo(queryValue, 'movie');
-            }
-            else if (this.isMoviesFilterActive) {
-                this.getStreamProductsInfo(queryValue, 'movie');
-            }
-            else if (this.isTvSeriesFilterActive) {
-                this.getStreamProductsInfo(queryValue, 'tv');
+            switch (this.navActiveElementIndex) {
+                case 0:
+                    this.getStreamProductsInfo(queryValue, 'tv');
+                    this.getStreamProductsInfo(queryValue, 'movie');
+                    break;
+                case 1:
+                    this.getStreamProductsInfo(queryValue, 'tv');
+                    break;
+                case 2:
+                    this.getStreamProductsInfo(queryValue, 'movie');
+                    break;
             }
         },
+
+        changeNavActiveElementIndex(index) {
+            this.navActiveElementIndex = index;
+        }
     },
 }
 </script>
@@ -64,8 +68,8 @@ export default {
                     <h1 class="text-uppercase fw-bold">Boolfix</h1>
                 </a>
                 <ul class="list-unstyled d-flex m-0">
-                    <li v-for="navElement, index in navElementsList" :key="index"><a href="#"
-                            class="text-decoration-none pe-3"
+                    <li v-for="navElement, index in navElementsList" :key="index"
+                        @click="changeNavActiveElementIndex(index)"><a href="#" class="text-decoration-none pe-3"
                             :class="(navActiveElementIndex === index) ? 'my_active fw-bold' : ''">{{ navElement }}</a>
                     </li>
                 </ul>
