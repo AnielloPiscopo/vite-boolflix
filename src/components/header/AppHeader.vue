@@ -45,10 +45,10 @@ export default {
 
 
 <template>
-    <header>
+    <header class="d-flex justify-content-between align-items-center p-4">
+        <h1 class="text-uppercase">Boolfix</h1>
         <form>
-            <input type="text" v-model.trim.lazy="inputValue">
-            <a href="#" class="btn btn-primary" @click="viewStreamProductsList(inputValue)">Clicca qui!</a>
+            <input type="text" v-model.trim="inputValue" @keyup.enter="viewStreamProductsList(inputValue)">
         </form>
     </header>
 </template>
