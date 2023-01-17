@@ -35,7 +35,7 @@ export default {
 
 <template>
     <main>
-        <section class="my_container d-flex flex-wrap">
+        <div class="my_container d-flex flex-wrap justify-content-center pt-5">
             <MainStreamProduct v-for="streamProduct, index in streamProducts" :key="index"
                 :streamProductImgPath="getStreamProductImgPath(streamProduct.poster_path)"
                 :streamProductPosterPath="streamProduct.poster_path" :streamProductTitle="streamProduct.title"
@@ -44,7 +44,7 @@ export default {
                 :streamProductOriginalName="streamProduct.original_name"
                 :streamProductOriginalLanguage="streamProduct.original_language"
                 :streamProductVoteAverage="streamProduct.vote_average" />
-        </section>
+        </div>
     </main>
 </template>
 
