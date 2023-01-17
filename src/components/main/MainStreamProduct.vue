@@ -5,7 +5,7 @@ export default {
     name: 'MainStreamProduct',
 
     props: {
-        streamProductImgPath: Array,
+        streamProductImgPath: String,
         streamProductTitle: String,
         streamProductOriginalTitle: String,
         streamProductName: String,
