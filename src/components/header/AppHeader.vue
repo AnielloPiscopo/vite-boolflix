@@ -71,8 +71,8 @@ export default {
                 </ul>
             </nav>
             <form @submit.prevent>
-                <input type="text" placeholder="Inserisci il nome del prodotto che vuoi vedere" class='my_input'
-                    v-model.trim="inputValue" @keyup.prevent.enter="viewStreamProductsList(inputValue)">
+                <input type="text" placeholder="Inserisci il nome" class='my_input' v-model.trim="inputValue"
+                    @keyup.prevent.enter="viewStreamProductsList(inputValue)">
             </form>
         </div>
     </header>
