@@ -48,11 +48,5 @@ export default {
 
 
 <style lang="scss" scoped>
-.my_icon {
-    color: grey;
-}
 
-.my_icon.my_active {
-    color: yellow;
-}
 </style>

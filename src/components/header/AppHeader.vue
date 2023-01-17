@@ -47,9 +47,9 @@ export default {
 <template>
     <header class="d-flex justify-content-between align-items-center p-4">
         <h1 class="text-uppercase">Boolfix</h1>
-        <form>
+        <form @submit.prevent>
             <input type="text" class='my_input' v-model.trim="inputValue"
-                @keyup.enter="viewStreamProductsList(inputValue)">
+                @keyup.prevent.enter="viewStreamProductsList(inputValue)">
         </form>
     </header>
 </template>

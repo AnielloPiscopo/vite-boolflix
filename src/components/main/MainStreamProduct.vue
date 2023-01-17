@@ -45,5 +45,13 @@ export default {
 
 
 <style lang="scss" scoped>
+@use '../../styles/partials/variables' as *;
 
+.my_icon {
+    color: $stars--color;
+
+    &.my_active {
+        color: $stars-active--color;
+    }
+}
 </style>
