@@ -19,7 +19,6 @@ export default {
             apiStreamProductImgPath: 'https://image.tmdb.org/t/p/',
             streamProductImgWidth: 'w342',
             inputValue: '',
-            isFound: false,
         }
     },
 
@@ -43,16 +42,10 @@ export default {
         },
 
         viewStreamProductsList(queryValue) {
-            if (queryValue) {
-                this.isFound = true;
-                this.getStreamProductsInfo(queryValue, 'tv');
-                this.getStreamProductsInfo(queryValue, 'movie');
-
-                this.store.streamProductsList = [...this.store.moviesList, ...this.store.tvSeriesList];
-                console.log(this.store.streamProductsList);
-                console.log(this.store.moviesList);
-                console.log(this.store.tvSeriesList);
-            }
+            this.getStreamProductsInfo(queryValue, 'tv');
+            this.getStreamProductsInfo(queryValue, 'movie');
+            console.log(this.store.moviesList);
+            console.log(this.store.tvSeriesList);
         },
 
         getImgPath(imgPath) {
@@ -69,9 +62,11 @@ export default {
         }
     },
 
-    beforeUnmount() {
-        this.isFound = false;
-    },
+    computed: {
+        streamProducts() {
+            return [...this.store.moviesList, ...this.store.tvSeriesList];
+        }
+    }
 }
 </script>
 
@@ -81,15 +76,14 @@ export default {
         <a href="#" class="btn btn-primary" @click="viewStreamProductsList(inputValue)">Clicca qui!</a>
     </form>
     <div>
-        <article v-if="isFound" v-for="streamProduct, index in store.streamProductsList" :key="index">
+        <article v-for="streamProduct, index in streamProducts" :key="index">
             <ul class="list-unstyled">
                 <li>
                     <ul class="list-unstyled">
                         <li> <img :src="getStreamProductImgPath(streamProduct.poster_path)" alt=""></li>
-                        <li v-if="streamProduct.title">{{ streamProduct.title }}</li>
-                        <li v-else>{{ streamProduct.name }}</li>
-                        <li v-if="streamProduct.original_title">{{ streamProduct.original_title }}</li>
-                        <li v-else>{{ streamProduct.original_name }}</li>
+                        <li>{{ (streamProduct.title) ? streamProduct.title : streamProduct.name }}</li>
+                        <li>{{ (streamProduct.original_title) ? streamProduct.original_title :
+                        streamProduct.original_name }}</li>
                         <li><img :src="getImgPath(streamProduct.original_language)" alt=""></li>
                         <li>
                             <font-awesome-icon v-for="starIcon, index in 5" icon="fa-solid fa-star" class="my_icon"
