@@ -29,36 +29,9 @@
 
 ## 📒 Table of Contents
 - [📒 Table of Contents](#-table-of-contents)
-- [📍 Overview](#-overview)
-- [⚙️ Features](#-features)
-- [📂 Project Structure](#project-structure)
 - [🧩 Modules](#modules)
 - [🚀 Getting Started](#-getting-started)
-- [🗺 Roadmap](#-roadmap)
-- [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
-- [👏 Acknowledgments](#-acknowledgments)
-
----
-
-
-## 📍 Overview
-
-HTTPStatus Exception: 429
-
----
-
-## ⚙️ Features
-
-HTTPStatus Exception: 429
-
----
-
-
-## 📂 Project Structure
-
-
-
 
 ---
 
@@ -88,13 +61,12 @@ HTTPStatus Exception: 429
 ### ✔️ Prerequisites
 
 Before you begin, ensure that you have the following prerequisites installed:
-> - `ℹ️ Requirement 1`
-> - `ℹ️ Requirement 2`
-> - `ℹ️ ...`
+> - ℹ️ Node.js and npm (Node Package Manager): Make sure you have Node.js installed on your computer. You can download Node.js from the official website: https://nodejs.org/. Node.js includes npm, which will be used to install project dependencies.
+> - ℹ️ Git: Ensure you have Git installed on your computer. You can download Git from the official website: https://git-scm.com/. Git allows you to clone the GitHub repository onto your computer.
 
 ### 📦 Installation
 
-1. Clone the vite-boolflix repository:
+1. Clone the repository:
 ```sh
 git clone https://github.com/AnielloPiscopo/vite-boolflix
 ```
@@ -106,63 +78,19 @@ cd vite-boolflix
 
 3. Install the dependencies:
 ```sh
-`ℹ️  INSERT-DESCRIPTION`
+npm i
 ```
 
 ### 🎮 Using vite-boolflix
 
 ```sh
-`ℹ️  INSERT-DESCRIPTION`
+npm run dev
 ```
-
-### 🧪 Running Tests
-```sh
-`ℹ️  INSERT-DESCRIPTION`
-```
-
----
-
-
-## 🗺 Roadmap
-
-> - [X] `ℹ️  Task 1: Implement X`
-> - [ ] `ℹ️  Task 2: Refactor Y`
-> - [ ] `ℹ️ ...`
-
-
----
-
-## 🤝 Contributing
-
-Contributions are always welcome! Please follow these steps:
-1. Fork the project repository. This creates a copy of the project on your account that you can modify without affecting the original project.
-2. Clone the forked repository to your local machine using a Git client like Git or GitHub Desktop.
-3. Create a new branch with a descriptive name (e.g., `new-feature-branch` or `bugfix-issue-123`).
-```sh
-git checkout -b new-feature-branch
-```
-4. Make changes to the project's codebase.
-5. Commit your changes to your local branch with a clear commit message that explains the changes you've made.
-```sh
-git commit -m 'Implemented new feature.'
-```
-6. Push your changes to your forked repository on GitHub using the following command
-```sh
-git push origin new-feature-branch
-```
-7. Create a new pull request to the original project repository. In the pull request, describe the changes you've made and why they're necessary.
-The project maintainers will review your changes and provide feedback or merge them into the main branch.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the `ℹ️  INSERT-LICENSE-TYPE` License. See the [LICENSE](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository) file for additional info.
-
----
-
-## 👏 Acknowledgments
-
-> - `ℹ️  List any resources, contributors, inspiration, etc.`
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for additional info.
 
 ---
